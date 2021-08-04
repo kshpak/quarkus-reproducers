@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.quarkus.example";
+option java_outer_classname = "HelloWorldProto";
+
+package helloworld;
+
+service Greeter {
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+service Streaming {
+  rpc Source (HelloRequest) returns (stream HelloReply) {}
+  rpc Sink (stream HelloRequest) returns (HelloReply) {}
+  rpc Pipe (stream HelloRequest) returns (stream HelloReply) {}
+}
+
+message HelloRequest{
+  string name = 1;
+}
+
+message HelloReply {
+  string message = 1;
+}
